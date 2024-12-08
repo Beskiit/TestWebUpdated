@@ -1,0 +1,52 @@
+﻿@model List<TestWebUpdated.Models.DepartmentViewModel>
+
+@{
+    ViewData["Title"] = "Department Details";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(@errorMessage))
+{
+    <div class="alert alert-danger">
+        <strong>Error!</strong>@errorMessage
+        <button type="button" class="btn-close float-end" data-ds-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form action="/" method="post">
+    <button asp-controller="Department" asp-action="Add" class="btn btn-primary">Create Department</button>
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr class="table-active">
+                <th>Department Id</th>
+                <th>Department Name</th>
+                <th>Department Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var department in Model)
+                {
+                    <tr>
+                        <td>@department.DepartmentId</td>
+                        <td>@department.DepartmentName</td>
+                        <td>@department.DepartmentDescription</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            No Departments Available.
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

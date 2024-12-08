@@ -1,0 +1,53 @@
+﻿@model List<TestWebUpdated.Models.DepartmentViewModel>
+
+@{
+	ViewData["Title"] = "Department Details";
+	var successMessage = TempData["successMessage"]?.ToString();
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(@successMessage))
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong>@successMessage
+        <button type="button" class="btn-close float-end" data-ds-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<form action="/" method="post">
+    <a asp-action="Add" asp-controller="DepartmentController" class="btn btn-primary">Create Employee</a>
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr class="table-active">
+                <th>Department Id</th>
+                <th>Department Name</th>
+                <th>Contact Number</th>
+                <th>Department ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var department in Model)
+                {
+                    <tr>
+                        <td>@department.DepartmentId</td>
+                        <td>@department.DepartmentName</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            No Departments Available.
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

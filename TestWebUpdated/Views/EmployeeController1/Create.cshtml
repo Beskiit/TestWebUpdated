@@ -1,0 +1,46 @@
+﻿@model TestWebUpdated.Models.EmployeeViewModel
+
+@{
+	ViewData["Title"] = "Create Employee"; 
+	var errorMessage = TempData["errorMessage"]?.ToString();
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(@errorMessage))
+{
+	<div class="alert alert-danger">
+		<strong>Error!</strong>@errorMessage
+		<button type="button" class="btn-close float-end" data-ds-dismiss="alert" aria-label="Close"></button>
+	</div>
+}
+<form action="Create" method="post">	
+	<div class="mb-3">
+		<label class="form-label">First Name</label>
+		<input type="text" class="form-control" asp-for="FirstName" />
+		<span asp-validation-for="FirstName" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Middle Name</label>
+		<input type="text" class="form-control" asp-for="MiddleName" />
+		<span asp-validation-for="MiddleName" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Last Name</label>
+		<input type="text" class="form-control" asp-for="LastName" />
+		<span asp-validation-for="LastName" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Contact Number</label>
+		<input type="text" class="form-control" asp-for="ContactNum" />
+		<span asp-validation-for="ContactNum" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Department ID</label>
+		<input type="text" class="form-control" asp-for="DepartmentId" />
+		<span asp-validation-for="DepartmentId" class="text-danger"></span>
+	</div>
+	<div class="d-grid">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
+</form>
