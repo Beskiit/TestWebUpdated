@@ -12,5 +12,6 @@ namespace TestWebUpdated.DAL
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
     }
 }
